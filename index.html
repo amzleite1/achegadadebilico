@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Doce Espera por Francisco "Bilico"</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Nunito:wght@400;700&display=swap');
+
+        body {
+            /* Fonte principal do corpo do texto */
+            font-family: 'Nunito', sans-serif;
+            color: #3b3b3b;
+            margin: 0;
+            padding: 40px 20px;
+            text-align: center;
+            /* Nova imagem de fundo */
+            background-color: #f7f9fc;
+            background-image: url('https://www.heropatterns.com/uploads/pattern/305/pattern.svg');
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding: 20px 40px;
+            border: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        /* --- Decorações --- */
+        .decoration {
+            position: absolute;
+            font-size: 2.5em;
+            animation: bounce 3s ease-in-out infinite;
+            z-index: 10;
+            opacity: 0.8;
+        }
+        .deco-1 { top: -30px; left: -20px; content: '🍼'; transform: rotate(-25deg); animation-delay: 0.2s;}
+        .deco-2 { top: 40%; right: -50px; content: '🧸'; transform: rotate(15deg); animation-delay: 0.5s;}
+        .deco-3 { bottom: -30px; left: 15%; content: '⭐'; animation-name: spin; animation-duration: 5s; }
+        .deco-4 { bottom: -25px; right: -30px; content: '☁️'; animation-delay: 0.8s;}
+
+        header h1 {
+            /* Nova fonte minimalista para o título principal */
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: #0077b6;
+            font-size: 2.8em;
+            margin-bottom: 5px;
+        }
+        
+        header h2 {
+            font-family: 'Nunito', sans-serif;
+            color: #0096c7;
+            font-size: 1.2em;
+            font-weight: 400;
+            margin-top: 0;
+        }
+
+        .section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px dashed #eaf6ff;
+        }
+
+        .section h3 {
+            /* Nova fonte minimalista para os títulos de seção */
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: #0077b6;
+            font-size: 2em;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            flex-basis: 250px;
+            flex-grow: 1;
+            border: 1px solid #eaf6ff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,119,182,0.1);
+        }
+        
+        .card .icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #00b4d8;
+        }
+
+        .card h4 {
+            margin-top: 0;
+            color: #023e8a;
+            font-size: 1.2em;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        
+        .card p {
+            line-height: 1.7;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        li {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%2300b4d8" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>') no-repeat left center;
+            padding-left: 35px;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+        }
+        
+        li strong {
+            color: #03045e;
+            font-weight: 700;
+        }
+
+        .astro-calculator {
+            background: #f7fcff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 20px;
+            border: 1px solid #eaf6ff;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .controls label, .controls input, .controls button {
+            font-size: 1.1em;
+            font-family: 'Nunito', sans-serif;
+        }
+        
+        .controls button {
+            background-color: #0096c7;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .controls button:hover {
+            background-color: #0077b6;
+            transform: scale(1.05);
+        }
+        
+        #astro-result {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .result-item {
+            font-size: 1.2em;
+        }
+        
+        .result-item strong {
+            color: #03045e;
+            display: block;
+            font-size: 1.5em;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        
+        footer {
+            margin-top: 50px;
+            font-size: 1em;
+            color: #888;
+        }
+        
+        /* --- Animações --- */
+        @keyframes bounce {
+            0%, 100% {transform: translateY(0);}
+            50% {transform: translateY(-20px);}
+        }
+        @keyframes spin { 
+            100% { transform: rotate(360deg); } 
+        }
+
+    </style>
+</head>
+<body>
+    <div class="decoration deco-1">🍼</div>
+    <div class="decoration deco-2">🧸</div>
+    <div class="decoration deco-3">⭐</div>
+    <div class="decoration deco-4">☁️</div>
+
+    <div class="container">
+        <header>
+            <h1>A Doce Espera por Francisco "Bilico"</h1>
+            <h2>Uma celebração de palpites e projeções para o novo membro da família!</h2>
+        </header>
+
+        <div class="section">
+            <h3>🍼 Os Pais do Ano</h3>
+            <div class="card-container">
+                <div class="card"><div class="icon">👨‍👩‍👦</div><h4>Papai Coruja</h4><p>Flávio Albuquerque</p></div>
+                <div class="card"><div class="icon">🤱</div><h4>Super Mamãe</h4><p>Cibelle Fernandes</p></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>🗓️ O Bolão do Nascimento</h3>
+            <p>A data oficial é <strong>9 de Outubro</strong>, mas a turma tem seus palpites!</p>
+            <div class="card-container">
+                <div class="card">
+                    <h4>Quem acertará?</h4>
+                    <ul>
+                        <li><strong>Luciana:</strong> 02 de Outubro</li>
+                        <li><strong>Lilian:</strong> 03 de Outubro</li>
+                        <li><strong>Adriano:</strong> 04 de Outubro</li>
+                        <li><strong>Caroll:</strong> 05 de Outubro</li>
+                        <li><strong>Danilo:</strong> 07 de Outubro</li>
+                        <li><strong>Paulo:</strong> 08 de Outubro</li>
+                        <li><strong>João:</strong> 09 de Outubro</li>
+                    </ul>
+                </div>
+                <div class="card">
+                     <div class="icon">♎</div>
+                     <h4>Signo Previsto</h4>
+                     <p>Com tantas apostas no início de Outubro, ele tem tudo para ser um autêntico <strong>Libriano</strong>!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>✨ O Futuro Segundo a Numerologia</h3>
+             <div class="card-container">
+                <div class="card"><h4>Destino 1 (Nasc. 09/10)</h4><p>Um destino de liderança, pioneirismo e forte individualidade.</p></div>
+                <div class="card"><h4>Destino 8 (Nasc. 07/10)</h4><p>Poder, disciplina e realização prática. Ótimo para empreender.</p></div>
+                <div class="card"><h4>Destino 9 (Nasc. 08/10)</h4><p>Marcado pelo idealismo, compaixão e humanitarismo.</p></div>
+                <div class="card"><h4>Destino 11 (Nasc. 10/10)</h4><p>Raro! Indica espiritualidade, sensibilidade e uma visão inspiradora.</p></div>
+             </div>
+        </div>
+        
+        <div class="section">
+            <h3> astrologia do bilico</h3>
+            <div class="astro-calculator">
+                <h4>Descubra o Mapa Astral do Bilico!</h4>
+                <p>Mamãe, insira a data e hora do nascimento para uma prévia astrológica!</p>
+                <div class="controls">
+                    <label for="birth-date">Data:</label>
+                    <input type="date" id="birth-date">
+                    <label for="birth-time">Hora:</label>
+                    <input type="time" id="birth-time">
+                    <button onclick="calculateAstrology()">Calcular</button>
+                </div>
+                <div id="astro-result"></div>
+                <p style="font-size: 0.8em; color: #aaa; margin-top: 15px;">*Os cálculos são aproximações divertidas e podem variar.</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>💖 Feito com carinho para celebrar a chegada do Francisco! 💖</p>
+        </footer>
+    </div>
+
+    <script>
+        function getZodiacSign(day, month) {
+            if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) return "Aquário ♒";
+            if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) return "Peixes ♓";
+            if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) return "Áries ♈";
+            if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) return "Touro ♉";
+            if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) return "Gêmeos ♊";
+            if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) return "Câncer ♋";
+            if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) return "Leão ♌";
+            if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) return "Virgem ♍";
+            if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) return "Libra ♎";
+            if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) return "Escorpião ♏";
+            if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) return "Sagitário ♐";
+            if ((month == 12 && day >= 22) || (month == 1 && day <= 19)) return "Capricórnio ♑";
+        }
+
+        function getAscendantSign(hour) {
+            const ascendantMap = [
+                "Leão ♌", "Leão ♌", "Virgem ♍", "Virgem ♍", "Libra ♎", "Libra ♎", 
+                "Escorpião ♏", "Escorpião ♏", "Sagitário ♐", "Sagitário ♐", "Capricórnio ♑", "Capricórnio ♑",
+                "Aquário ♒", "Aquário ♒", "Peixes ♓", "Peixes ♓", "Áries ♈", "Áries ♈", 
+                "Touro ♉", "Touro ♉", "Gêmeos ♊", "Gêmeos ♊", "Câncer ♋", "Câncer ♋"
+            ];
+            return ascendantMap[hour];
+        }
+
+        function getMoonSign(day, month) {
+            // Tabela simplificada para Outubro/2025 (aproximação)
+            if (month !== 10) return "Cálculo para Outubro";
+            if (day >= 1 && day <= 2) return "Virgem ♍";
+            if (day >= 3 && day <= 5) return "Libra ♎";
+            if (day >= 6 && day <= 8) return "Escorpião ♏";
+            if (day >= 9 && day <= 10) return "Sagitário ♐";
+            if (day >= 11 && day <= 13) return "Capricórnio ♑";
+            if (day >= 14 && day <= 16) return "Aquário ♒";
+            if (day >= 17 && day <= 18) return "Peixes ♓";
+            if (day >= 19 && day <= 21) return "Áries ♈";
+            if (day >= 22 && day <= 24) return "Touro ♉";
+            if (day >= 25 && day <= 26) return "Gêmeos ♊";
+            if (day >= 27 && day <= 29) return "Câncer ♋";
+            if (day >= 30 && day <= 31) return "Leão ♌";
+            return "Indefinido";
+        }
+
+        function calculateAstrology() {
+            const dateInput = document.getElementById('birth-date').value;
+            const timeInput = document.getElementById('birth-time').value;
+
+            if (!dateInput || !timeInput) {
+                alert("Por favor, preencha a data e a hora do nascimento.");
+                return;
+            }
+
+            const birthDate = new Date(dateInput + 'T' + timeInput);
+            const day = birthDate.getDate();
+            const month = birthDate.getMonth() + 1;
+            const hour = birthDate.getHours();
+
+            const zodiac = getZodiacSign(day, month);
+            const ascendant = getAscendantSign(hour);
+            const moon = getMoonSign(day, month);
+
+            const resultDiv = document.getElementById('astro-result');
+            resultDiv.innerHTML = `
+                <div class="result-item">
+                    <p>☀️ Signo Solar</p>
+                    <strong>${zodiac}</strong>
+                </div>
+                <div class="result-item">
+                    <p>⬆️ Ascendente</p>
+                    <strong>${ascendant}</strong>
+                </div>
+                <div class="result-item">
+                    <p>🌙 Lua</p>
+                    <strong>${moon}</strong>
+                </div>
+            `;
+        }
+        
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('birth-date').value = '2025-10-09';
+            document.getElementById('birth-time').value = '08:30';
+        });
+    </script>
+</body>
+</html>
